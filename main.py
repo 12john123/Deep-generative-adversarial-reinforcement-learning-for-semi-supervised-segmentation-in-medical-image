@@ -597,15 +597,15 @@ if __name__ == "__main__":
     unlabel_loader=DataLoader(unlabeled_set,batch_size=int(batch_size*(1-label_rate)),shuffle=True,drop_last=True)
     val_loader=DataLoader(val_set,batch_size=1,shuffle=False)
     
-    ep='160'
-    sac.load(ep,directory)
-    generator=torch.load(os.path.join(directory,ep+'generator_liver.sp'),map_location=device)
-    discriminator=torch.load(os.path.join(directory,ep+'discriminator_liver.sp'),map_location=device)
+    #ep='160'
+    #sac.load(ep,directory)
+    #generator=torch.load(os.path.join(directory,ep+'generator_liver.sp'),map_location=device)
+    #discriminator=torch.load(os.path.join(directory,ep+'discriminator_liver.sp'),map_location=device)
     hard_update(target_d,discriminator)
     hard_update(target_g,generator)
 
     dis_d=evalnet.evalNet(2).to(device)
-    dis_d=torch.load(os.path.join(directory,ep+'dis_d_liver.sp'),map_location=device)
+    #dis_d=torch.load(os.path.join(directory,ep+'dis_d_liver.sp'),map_location=device)
     dis_d_target=evalnet.evalNet(2).to(device)
     hard_update(dis_d_target,dis_d)
     
